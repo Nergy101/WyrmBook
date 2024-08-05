@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WyrmBook.Api", "WyrmBook.Api\WyrmBook.Api.csproj", "{5C800EB6-E4FC-498A-BC1D-BA0B77306BE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WyrmBook.Core", "WyrmBook.Core\WyrmBook.Core.csproj", "{1873D5E4-19C6-4285-A702-E39866086E1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WyrmBook.Domain", "WyrmBook.Domain\WyrmBook.Domain.csproj", "{FEA62843-84A8-443B-B5D8-ACD6AF8B4CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WyrmBook.UseCases", "WyrmBook.UseCases\WyrmBook.UseCases.csproj", "{0A53E7E6-222A-40B7-A13F-B80E48356473}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C800EB6-E4FC-498A-BC1D-BA0B77306BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C800EB6-E4FC-498A-BC1D-BA0B77306BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C800EB6-E4FC-498A-BC1D-BA0B77306BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C800EB6-E4FC-498A-BC1D-BA0B77306BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1873D5E4-19C6-4285-A702-E39866086E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1873D5E4-19C6-4285-A702-E39866086E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1873D5E4-19C6-4285-A702-E39866086E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1873D5E4-19C6-4285-A702-E39866086E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA62843-84A8-443B-B5D8-ACD6AF8B4CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA62843-84A8-443B-B5D8-ACD6AF8B4CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA62843-84A8-443B-B5D8-ACD6AF8B4CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA62843-84A8-443B-B5D8-ACD6AF8B4CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A53E7E6-222A-40B7-A13F-B80E48356473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A53E7E6-222A-40B7-A13F-B80E48356473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A53E7E6-222A-40B7-A13F-B80E48356473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A53E7E6-222A-40B7-A13F-B80E48356473}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
