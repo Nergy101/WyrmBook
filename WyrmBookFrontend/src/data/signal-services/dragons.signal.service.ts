@@ -23,7 +23,7 @@ export class DragonsSignalService {
   }
 
   async find(name: string): Promise<any | undefined> {
-    return lastValueFrom(this.all().find((x: any) => x.name === name));
+    return this.all().find((x: any) => x.name === name);
   }
 
   async add(dragon: any): Promise<void> {
@@ -42,13 +42,15 @@ export class DragonsSignalService {
 
   async delete(name: string): Promise<void> {
     await lastValueFrom(this.apiService.deleteDragon(name));
+
     this.all.update((current) => current.filter((x) => x.name !== name));
   }
 
   private async getAll(): Promise<void> {
-    const apiResult = (await lastValueFrom(
-      this.apiService.getDragons()
-    )) as any;
-    this.all.set(apiResult['value'] as []);
+    const apiResult = await lastValueFrom(this.apiService.getDragons());
+
+    if (apiResult.isSuccess) {
+      this.all.set(apiResult.value ?? []);
+    }
   }
 }

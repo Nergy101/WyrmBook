@@ -1,5 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { catchError, EMPTY, Observable, of, tap } from 'rxjs';
+import {
+  ValueResultResponseModel,
+  VoidResultResponseModel,
+} from '../models/api-result';
 // import Environment from '../../environments/environment';
 
 @Injectable({
@@ -13,21 +18,46 @@ export class GenericApiService {
 
   constructor() {
     this.baseUrl = 'http://localhost:5112/api/'; // this.environment.apiUrl;
+
+    this.httpClient.options;
   }
 
-  get(url: string) {
-    return this.httpClient.get(this.baseUrl + url);
+  private handleError(error: HttpErrorResponse): Observable<any> {
+    if (!error.error.isSuccess) {
+      console.warn('Server response not OK', error.error);
+    }
+    return of(EMPTY);
   }
 
-  post(url: string, body: any) {
-    return this.httpClient.post(this.baseUrl + url, body);
+  get<T>(url: string): Observable<ValueResultResponseModel<T>> {
+    return (
+      this.httpClient.get(this.baseUrl + url) as Observable<
+        ValueResultResponseModel<T>
+      >
+    ).pipe(catchError(this.handleError));
   }
 
-  put(url: string, body: any) {
-    return this.httpClient.put(this.baseUrl + url, body);
+  post<T>(url: string, body: T) {
+    return (
+      this.httpClient.post(this.baseUrl + url, body) as Observable<
+        ValueResultResponseModel<T>
+      >
+    ).pipe(catchError(this.handleError));
+  }
+
+  put<T>(url: string, body: T) {
+    return (
+      this.httpClient.put(this.baseUrl + url, body) as Observable<
+        ValueResultResponseModel<T>
+      >
+    ).pipe(catchError(this.handleError));
   }
 
   delete(url: string) {
-    return this.httpClient.delete(this.baseUrl + url);
+    return (
+      this.httpClient.delete(
+        this.baseUrl + url
+      ) as Observable<VoidResultResponseModel>
+    ).pipe(catchError(this.handleError));
   }
 }

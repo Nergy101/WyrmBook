@@ -1,6 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { DragonsApiService } from '../services/dragons.service';
-import { lastValueFrom, map, Observable, Subject, switchMap, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  lastValueFrom,
+  map,
+  Observable,
+  Subject,
+  switchMap,
+  tap,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +16,7 @@ import { lastValueFrom, map, Observable, Subject, switchMap, tap } from 'rxjs';
 export class DragonsRxjsService {
   apiService = inject(DragonsApiService);
 
-  _all: Subject<any[]> = new Subject<any[]>();
+  _all: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
   all: Observable<any[]> = this._all.asObservable();
   count: Observable<number> = this.all.pipe(map((x) => x.length));
@@ -18,12 +26,12 @@ export class DragonsRxjsService {
   }
 
   async find(name: string): Promise<any | undefined> {
-    return (await lastValueFrom(this._all)).find((x: any) => x.name === name);
+    return this._all.value.find((x: any) => x.name === name);
   }
 
   async add(dragon: any): Promise<void> {
     const newDragon = await lastValueFrom(this.apiService.addDragon(dragon));
-    const currentAll = await lastValueFrom(this.all);
+    const currentAll = this._all.value;
 
     this._all.next([currentAll, newDragon]);
   }
@@ -32,7 +40,7 @@ export class DragonsRxjsService {
     const updatedDragon = await lastValueFrom(
       this.apiService.updateDragon(dragon)
     );
-    const currentAll = await lastValueFrom(this.all);
+    const currentAll = this._all.value;
 
     this._all.next(
       currentAll.map((x) => (x.name === dragon.name ? updatedDragon : x))
@@ -41,15 +49,16 @@ export class DragonsRxjsService {
 
   async delete(name: string): Promise<void> {
     await lastValueFrom(this.apiService.deleteDragon(name));
-    const currentAll = await lastValueFrom(this.all);
+    const currentAll = this._all.value;
 
     this._all.next(currentAll.filter((x) => x.name !== name));
   }
 
   private async getAll(): Promise<void> {
-    const apiResult = (await lastValueFrom(
-      this.apiService.getDragons()
-    )) as any;
-    this._all.next(apiResult['value'] as []);
+    const apiResult = await lastValueFrom(this.apiService.getDragons());
+
+    if (apiResult.isSuccess) {
+      this._all.next(apiResult.value ?? []);
+    }
   }
 }

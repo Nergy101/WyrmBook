@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { DragonsRxjsService } from '../../../data/signal-services/dragons.rxjs.service';
 import { DragonsSignalService } from '../../../data/signal-services/dragons.signal.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
@@ -17,5 +17,28 @@ export class DragonsListComponent implements OnInit {
   allDragons$ = this.dragonsRxjsService.all;
   allDragons = this.dragonsSignalService.all;
 
-  async ngOnInit(): Promise<void> {}
+  constructor() {
+    effect(() => {
+      console.log(this.allDragons());
+    });
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.allDragons$.subscribe((dragons) => {
+      console.log(dragons);
+    });
+  }
+
+  async getDragon(name: string) {
+    const dragon = await this.dragonsSignalService.find(name);
+    console.log(dragon);
+
+    const dragon2 = await this.dragonsRxjsService.find(name);
+    console.log(dragon2);
+  }
+
+  deleteDragon(name: string) {
+    this.dragonsSignalService.delete(name);
+    this.dragonsRxjsService.delete(name);
+  }
 }

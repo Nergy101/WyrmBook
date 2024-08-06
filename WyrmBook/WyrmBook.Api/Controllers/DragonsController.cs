@@ -55,7 +55,7 @@ public class DragonsController(IMediator mediator) : BaseController(mediator)
     /// <summary>
     ///     Endpoint for deleting dragon with given <paramref name="name" />
     /// </summary>
-    [HttpDelete]
+    [HttpDelete("{name}")]
     public async Task<ActionResult> DeleteDragon(string name)
     {
         return await Handle(new DeleteDragonCommand(name));

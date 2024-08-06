@@ -1,5 +1,9 @@
 <h1>Dragon List</h1>
 <h2>Dragon Signal Service</h2>
+
+<button (click)="deleteDragon('Draco')">Delete test dragon</button>
+<button (click)="getDragon('Draco')">Get dragon</button>
+
 <ul>
     @for(dragon of allDragons(); track dragon) {
     <li>{{ dragon.name }}</li>
