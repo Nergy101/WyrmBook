@@ -24,7 +24,7 @@ export class GenericApiService {
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     if (!error.error.isSuccess) {
-      console.warn('Server response not OK', error.error);
+      console.warn('Server response not OK', error.error?.errors);
     }
     return of(EMPTY);
   }
