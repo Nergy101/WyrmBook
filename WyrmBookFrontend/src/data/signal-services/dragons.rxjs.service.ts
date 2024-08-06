@@ -47,6 +47,9 @@ export class DragonsRxjsService {
   }
 
   private async getAll(): Promise<void> {
-    this._all.next((await lastValueFrom(this.apiService.getDragons())) as []);
+    const apiResult = (await lastValueFrom(
+      this.apiService.getDragons()
+    )) as any;
+    this._all.next(apiResult['value'] as []);
   }
 }

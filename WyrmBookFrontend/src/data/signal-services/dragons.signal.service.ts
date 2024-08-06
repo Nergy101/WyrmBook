@@ -1,5 +1,6 @@
 import {
   computed,
+  effect,
   inject,
   Injectable,
   signal,
@@ -45,6 +46,9 @@ export class DragonsSignalService {
   }
 
   private async getAll(): Promise<void> {
-    this.all.set((await lastValueFrom(this.apiService.getDragons())) as []);
+    const apiResult = (await lastValueFrom(
+      this.apiService.getDragons()
+    )) as any;
+    this.all.set(apiResult['value'] as []);
   }
 }

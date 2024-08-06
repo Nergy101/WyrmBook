@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { GenericApiService } from './generic-api.service';
 
@@ -15,28 +14,18 @@ export class DragonsApiService {
   }
 
   getDragon(name: string) {
-    return this.genericApiService.get(
-      `http://localhost:3000/api/dragons/${name}`
-    );
+    return this.genericApiService.get(`dragons/${name}`);
   }
 
   addDragon(dragon: any) {
-    return this.genericApiService.post(
-      'http://localhost:3000/api/dragons',
-      dragon
-    );
+    return this.genericApiService.post('dragons', dragon);
   }
 
   updateDragon(dragon: any) {
-    return this.genericApiService.put(
-      `http://localhost:3000/api/dragons/${dragon.name}`,
-      dragon
-    );
+    return this.genericApiService.put(`dragons/${dragon.name}`, dragon);
   }
 
   deleteDragon(name: string) {
-    return this.genericApiService.delete(
-      `http://localhost:3000/api/dragons/${name}`
-    );
+    return this.genericApiService.delete(`dragons/${name}`);
   }
 }

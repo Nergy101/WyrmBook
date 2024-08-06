@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import Environment from '../../environments/environment';
+// import Environment from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenericApiService {
   readonly httpClient = inject(HttpClient);
-  readonly environment = inject(Environment);
+  // readonly environment = inject(Environment);
 
   private readonly baseUrl: string;
 
   constructor() {
-    this.baseUrl = this.environment.apiUrl;
+    this.baseUrl = 'http://localhost:5112/api/'; // this.environment.apiUrl;
   }
 
   get(url: string) {
