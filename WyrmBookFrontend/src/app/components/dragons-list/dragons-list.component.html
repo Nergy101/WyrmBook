@@ -1,16 +1,38 @@
 <h1>Dragon List</h1>
 <h2>Dragon Signal Service</h2>
 
-<button (click)="deleteDragon('Draco')">Delete test dragon</button>
-<button (click)="getDragon('Draco')">Get dragon</button>
+<button mat-raised-button (click)="deleteDragon('Draco')">Delete test dragon</button>
+<button mat-raised-button (click)="getDragon('Draco')">Get dragon</button>
 
-<ul>
-    @for(dragon of allDragons(); track dragon) {
-    <li>{{ dragon.name }}</li>
+
+<h2> DragonList using Signals </h2>
+<mat-list>
+    @for(dragon of allDragons(); track dragon){
+    <mat-list-item>
+        <h3 mat-line>{{ dragon.name }}</h3>
+        <p mat-line>Element: {{ dragon.element }}</p>
+        <p mat-line>Attack: {{ dragon.attack }}</p>
+        <p mat-line>Defense: {{ dragon.defense }}</p>
+        <p mat-line>Speed: {{ dragon.speed }}</p>
+        <p mat-line>Health: {{ dragon.health }}</p>
+        <p mat-line>Created: {{ dragon.created | date }}</p>
+        <button mat-raised-button (click)="deleteDragon(dragon.name)">Delete</button>
+    </mat-list-item>
     }
-</ul>
+</mat-list>
 
-<h2>Dragon RxJS Service</h2>
-<ul>
-    <li *ngFor="let dragon of allDragons$ | async">{{ dragon.name }}</li>
-</ul>
+
+<h2> DragonList using Observables (RxJS)</h2>
+
+<mat-list>
+    <mat-list-item *ngFor="let dragon of allDragons$ | async">
+        <h3 mat-line>{{ dragon.name }}</h3>
+        <p mat-line>Element: {{ dragon.element }}</p>
+        <p mat-line>Attack: {{ dragon.attack }}</p>
+        <p mat-line>Defense: {{ dragon.defense }}</p>
+        <p mat-line>Speed: {{ dragon.speed }}</p>
+        <p mat-line>Health: {{ dragon.health }}</p>
+        <p mat-line>Created: {{ dragon.created | date }}</p>
+        <button mat-raised-button (click)="deleteDragon(dragon.name)">Delete</button>
+    </mat-list-item>
+</mat-list>

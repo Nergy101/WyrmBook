@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { MaterialModule } from '../../modules/material/material.module';
 
 @Component({
-  selector: 'app-landing-page',
+  selector: 'app-side-menu',
   standalone: true,
   imports: [MaterialModule],
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss',
+  templateUrl: './side-menu.component.html',
+  styleUrl: './side-menu.component.scss',
 })
-export class LandingPageComponent {}
+export class SideMenuComponent {}

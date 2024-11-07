@@ -2,11 +2,12 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { DragonsRxjsService } from '../../../data/signal-services/dragons.rxjs.service';
 import { DragonsSignalService } from '../../../data/signal-services/dragons.signal.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { MaterialModule } from '../../modules/material/material.module';
 
 @Component({
   selector: 'app-dragons-list',
   standalone: true,
-  imports: [CommonModule, AsyncPipe],
+  imports: [CommonModule, MaterialModule, AsyncPipe],
   templateUrl: './dragons-list.component.html',
   styleUrl: './dragons-list.component.scss',
 })
